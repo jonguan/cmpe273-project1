@@ -20,11 +20,13 @@ var addrRegex = /^(([a-zA-Z\-\.0-9]+):)?(\d+)$/;
 
 var addr = {
     from: addrRegex.exec(process.argv[2]),
-    to: addrRegex.exec(process.argv[3])
+    to: addrRegex.exec(process.argv[3]), 
+    timeout: process.argv[4]
 };
 
+// Timeout is optional
 if (!addr.from || !addr.to) {
-    console.log('Usage: <from> <to>');
+    console.log('Usage: <from> <to> [<timeout-in-seconds>]');
     return;
 }
 
@@ -33,6 +35,16 @@ net.createServer(function(from) {
         host: addr.to[2],
         port: addr.to[3]
     });
-    from.pipe(to);
-    to.pipe(from);
+    var timeout = addr.timeout;
+    if (timeout == null) {
+        timeout = 0;
+    }
+    console.log("timeout is " + timeout );
+
+    setTimeout(function() {
+        from.pipe(to);
+        to.pipe(from);
+    }, timeout * 1000);
+   
+    
 }).listen(addr.from[3], addr.from[2]);
