@@ -1,0 +1,4 @@
+.ui-accordion-header { background-color: #33CCFF; }
+.ui-accordion-header.ui-state-active { background-color: yellow; }
+.panel-heading {
+background:#CC6600;}
