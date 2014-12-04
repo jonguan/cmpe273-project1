@@ -8,7 +8,10 @@
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
-
+var fs = require('fs');
+var fse = require('fs-extra');
+var jf = require('jsonfile');
+var file = './options.json'
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -162,7 +165,31 @@ router.route('/SimpleProxyServer')
 	});
 
 
-	
+	router.route('/RouterSettings')
+
+	// create a simple Proxy Server payload (accessed at POST http://localhost:8080/api/RouterSettings)
+	.post(function(req, res) {
+		 
+		
+		 console.log(Object.keys(req.body)[0]);
+		/*fse.writeJson("./options.json", Object.keys(req.body)[0], function(err) {
+    if(err) {
+        console.log(err);
+        res.send(err);
+    } else {
+        console.log("The file was saved!");
+    }
+}); */
+
+	jf.writeFile(file,JSON.parse(Object.keys(req.body)[0]), function(err) {
+		//jf.writeFile(file, {"a":"b"}, function(err) {
+		if(err){
+		res.json({ message:err});
+  console.log(err);
+}
+});
+ res.json({ message: 'The file was saved!' });
+	});
 
 
 
