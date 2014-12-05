@@ -23,3 +23,9 @@ We can also install nodejitsu:
 
 https://github.com/nodejitsu/node-http-proxy
 
+** //Description of changes by Gaurav Bajaj start**
+
+Use server.js to manipulate options.json
+Options.json is used as a routing table by routingTable.js
+We'll use routingTable.js code in our proxy server
+** //Description of changes by Gaurav Bajaj end**
