@@ -15,6 +15,22 @@ You can include this module with require('net');
 */
 var net = require('net');
 
+var httpProxy = require('http-proxy');
+var HttpMaster = require('http-master');
+
+// var httpMaster = new HttpMaster();
+// httpMaster.init({
+//  // your config in here
+//  ports: {
+//     8000 : 8081
+//   }
+// }, function(err) {
+//  // listening
+// });
+
+
+// Old implementation
+/*
 // parse "80" and "localhost:80" or even "42mEANINg-life.com:80"
 var addrRegex = /^(([a-zA-Z\-\.0-9]+):)?(\d+)$/;
 
@@ -48,3 +64,4 @@ net.createServer(function(from) {
    
     
 }).listen(addr.from[3], addr.from[2]);
+*/
