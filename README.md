@@ -3,10 +3,11 @@ cmpe273-project1
 
 CMPE273 - Project 
 
-Install dependencies
-===============
+# Install dependencies
+
 % npm install
 
+# Running the code
 Make sure mongo is up and running on machine:
 % mongod
 
@@ -21,8 +22,8 @@ Use routingTable.js as the proxy server via
 
 Listens on Port 8000
 
-Old
-===================
+# Old
+
 % node proxy.js <from> <to> <timeout-in-seconds>
 
 To forward from localhost:9001 => localhost:80
