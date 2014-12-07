@@ -56,3 +56,9 @@ Or localhost:9001 => otherhost:80
 $ node proxy.js 9001 otherhost:80
 
 
+
+# UI
+
+Open index.html page in dist folder for the main page.
+
+It will lead to the further pages.
