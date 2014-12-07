@@ -9,18 +9,23 @@ CMPE273 - Project
 
 # Running the code
 Make sure mongo is up and running on machine:
+
 % mongod
 
 Run the backend server to manipulate options.json:
+
 % node server.js
 
 Options.json is used as a routing table by routingTable.js
+
 {requestedAddress:forwardedAddress}
 
 latency.json is used as a table to map request address to the relevant latency.
+
 {requestedAddress:latency}
 
 TODO: Possibly combine options.json and latency.json as such:
+
 { requestedAddress : {
                         "forwardTo":forwardedAddress
                         "latency":latency
