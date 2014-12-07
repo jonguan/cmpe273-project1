@@ -5,12 +5,13 @@ CMPE273 - Project
 
 Install dependencies
 ===============
-npm install
+% npm install
 
+Make sure mongo is up and running on machine:
+% mongod
 
-
-To run the server, put the code into a file example.js and execute it with the node program from the command line:
-Use server.js to manipulate options.json
+Run the backend server to manipulate options.json:
+% node server.js
 
 Options.json is used as a routing table by routingTable.js
 
