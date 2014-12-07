@@ -3,8 +3,16 @@ cmpe273-project1
 
 CMPE273 - Project 
 
-To run the server, put the code into a file example.js and execute it with the node program from the command line:
-Use server.js to manipulate options.json
+# Install dependencies
+
+% npm install
+
+# Running the code
+Make sure mongo is up and running on machine:
+% mongod
+
+Run the backend server to manipulate options.json:
+% node server.js
 
 Options.json is used as a routing table by routingTable.js
 
@@ -14,8 +22,8 @@ Use routingTable.js as the proxy server via
 
 Listens on Port 8000
 
-Old
-===================
+# Old
+
 % node proxy.js <from> <to> <timeout-in-seconds>
 
 To forward from localhost:9001 => localhost:80
