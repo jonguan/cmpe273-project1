@@ -1,0 +1,28 @@
+doctype html
+html
+ head
+  title Load Balancer API
+ body
+   block content
+    h1 Load Balancer Configuration API
+    p Current Configuration
+    table
+     thead
+      tr
+       th Host
+       th Port
+     tbody
+      - each val in rows
+        tr
+         td= val.host
+         td= val.port
+   br
+   br
+   form(method='post',action='http://localhost:8080/api/LoadConfiguration',enctype='application/json')
+    label(for='host') Host:
+     input(type='text',name='host',id='host')
+    label(for='port') Port:
+     input(type='text',name='port',id='port')
+     input(type='submit',name='submit',value='Configure')
+     p.
+      Clicking on Configure updates the load balancer with new details. Make sure the server details is corect and the servers are UP.
