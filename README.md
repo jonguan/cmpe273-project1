@@ -61,4 +61,4 @@ $ node proxy.js 9001 otherhost:80
 
 Open index.html page in dist folder for the main page.
 
-It will lead to the further pages.
+It will navigate to the further pages. If you want to link your html page to index.html, you need to add the location of the file at the "href" tag in the line corresponsing to that feature button.
