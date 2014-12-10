@@ -28,16 +28,16 @@ html
          td= val.port
    br
    br
-   tr
-    form(method='post',action='http://localhost:8080/api/LoadConfiguration',enctype='application/json')
-    td Host:
-    td
-     input(type='text',name='host')
-    td Port:
-    td
-     input(type='text',name='port')
-    td
-     input(type='submit',name='submit',value='Configure')
+   form(method='post',action='http://localhost:8080/api/LoadConfiguration',enctype='application/json')
+    tr
+     td Host:
+     td
+      input(type='text',name='host')
+     td Port:
+     td
+      input(type='text',name='port')
+     td
+      input(type='submit',name='submit',value='Configure')
    br
    br
    tr(id='hostname')
