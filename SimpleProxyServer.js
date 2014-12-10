@@ -29,6 +29,7 @@ app.use(
         );
 
         var delay = latency[req.headers.host];
+        console.log(latency[req.headers.host]);
         if (delay == null) {
             delay = 0;
         }

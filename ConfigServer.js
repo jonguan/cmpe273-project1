@@ -11,7 +11,8 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var fse = require('fs-extra');
 var jf = require('jsonfile');
-var file = './options.json'
+var optionsFile = './options.json';
+var latencyFile = './latency.json';
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -91,27 +92,38 @@ router.route('/SimpleProxyServer')
 	// create a simple Proxy Server payload (accessed at POST http://localhost:8080/api/RouterSettings)
 	.post(function(req, res) {
 		 
-		
-		 //console.log(Object.keys(req.body)[0]);
+	
 		 console.log(req.body);
-		/*fse.writeJson("./options.json", Object.keys(req.body)[0], function(err) {
-    if(err) {
-        console.log(err);
-        res.send(err);
-    } else {
-        console.log("The file was saved!");
-    }
-}); */
 
-	jf.writeFile(file,req.body, function(err) {
-		//jf.writeFile(file, {"a":"b"}, function(err) {
+
+	jf.writeFile(optionsFile,req.body, function(err) {
 		if(err){
 		res.json({ message:err});
   console.log(err);
 }
 });
- res.json({ message: 'The file was saved!' });
+ res.json({ message: 'Router Configurations Saved' });
 	});
+
+
+//Latency Settings
+
+router.route('/LatencySettings')
+
+	// create a simple Proxy Server payload (accessed at POST http://localhost:8080/api/LatencySettings)
+	.post(function(req, res) {
+		
+		 console.log(req.body);
+
+	jf.writeFile(latencyFile,req.body, function(err) {
+		if(err){
+		res.json({ message:err});
+  console.log(err);
+}
+});
+ res.json({ message: 'Latency Configurations Saved!' });
+	});
+
 
 
 
