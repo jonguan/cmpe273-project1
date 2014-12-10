@@ -1,1 +1,5 @@
-Configuration changed on Mon Dec 08 2014 10:46:55 GMT-0800 (Pacific Standard Time)
+<<<<<<< HEAD
+Configuration changed on Wed Dec 10 2014 04:17:58 GMT-0800 (PST)
+=======
+Configuration changed on Wed Dec 10 2014 03:01:37 GMT-0800 (PST)
+>>>>>>> FETCH_HEAD

@@ -102,17 +102,29 @@ $('#post-button-lb').on('click', function(e) {
     e.preventDefault();
     $.ajax({
       type: "GET",
-      url: "http://127.0.0.1:8021/",
+      url: $("#url-lb").val(),
       datatype: 'text',
       success: function(response,status,xhr) {
         console.log(response);
-        $('#server-response-lb').val(response + "\nResponse I.D. "+ xhr.getResponseHeader("X-HTTP-request-id"));
+        $('#server-response-lb').val(response);
       }
     });
     return false;
   });
 
-
+$('#post-button-pt').on('click', function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: $("#url-pt").val(),
+      datatype: 'text',
+      success: function(response,status,xhr) {
+        console.log(response);
+        $('#server-response-pt').val( "\nResponse Headers:\n"+ xhr.getAllResponseHeaders()+"\nResponse Body:\n"+response);
+      }
+    });
+    return false;
+  });
 /*
 $('#next-go-btn').click(function() {
    window.location = "www.google.com";
