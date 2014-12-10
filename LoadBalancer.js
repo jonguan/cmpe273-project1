@@ -64,7 +64,7 @@ http.createServer(function (req, res) {
 	console.log('Balancing Request To: ', target);
 	proxy.web(req, res, target,function(e){
 		console.log("Server Not Found. Please Make Sure The Server Is Running");
-		res.writeHead(400, {'Content-Type': 'text/plain'});
+		res.writeHead(400, {'Content-Type': 'text/plain','Access-Control-Allow-Origin':'*','access-control-expose-headers':'X-HTTP-request-id, x-http-processing-time'});
 		res.end('SERVER '+target.target+' NOT FOUND.\n');
 	  });
 	// ...and then the server you just used becomes the last item in the list.

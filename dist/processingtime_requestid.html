@@ -9,7 +9,7 @@
 <body>
   <nav class="navbar navbar-default" role="navigation">
     <div class="col-md-12 text-center">
-      <h2>Load Balancer</h2><hr/>
+      <h2>Server Response Time & Unique Request ID</h2><hr/>
     </div>
 
     <div class="panel-group col-md-8 col-md-offset-2" id="accordion" role="tablist" aria-multiselectable="true">
@@ -18,13 +18,13 @@
         <div class="panel-heading text-center" role="tab" id="headingTwo">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              Load Balancer Demonstration
+              Enter URL 
             </a>
           </h4>
         </div>
         <div class="panel panel-body"  aria-labelledby="headingTwo">
-         <input id="url-lb" type="text" class="form-control"></br>
-            <button id="post-button-lb" type="submit" class="btn btn-success col-md-offset-5">Send Request!</button>
+         <input id="url-pt" type="text" class="form-control" ></br>
+            <button id="post-button-pt" type="submit" class="btn btn-success col-md-offset-5">Compute <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
            
         
         </div>
@@ -38,7 +38,7 @@
           <div class="panel panel-danger">
             <div class="panel-heading">Server Response:</div>
             <div class="panel-body text-danger">
-              <textarea id="server-response-lb" class="form-control" rows="8"></textarea>
+              <textarea id="server-response-pt" class="form-control" rows="8" placeholder="This will compute processing time and display unique request id"></textarea>
             </div>
           </div>
         </div>
