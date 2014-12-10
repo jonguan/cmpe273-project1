@@ -171,7 +171,8 @@ router.route('/SimpleProxyServer')
 	.post(function(req, res) {
 		 
 		
-		 console.log(Object.keys(req.body)[0]);
+		 //console.log(Object.keys(req.body)[0]);
+		 console.log(req.body);
 		/*fse.writeJson("./options.json", Object.keys(req.body)[0], function(err) {
     if(err) {
         console.log(err);
@@ -181,7 +182,7 @@ router.route('/SimpleProxyServer')
     }
 }); */
 
-	jf.writeFile(file,JSON.parse(Object.keys(req.body)[0]), function(err) {
+	jf.writeFile(file,req.body, function(err) {
 		//jf.writeFile(file, {"a":"b"}, function(err) {
 		if(err){
 		res.json({ message:err});
