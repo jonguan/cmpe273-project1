@@ -14,13 +14,13 @@ var jf = require('jsonfile');
 var optionsFile = './options.json';
 var latencyFile = './latency.json';
 var datetime = new Date();
-
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('views',__dirname+'/Views');
 app.set('view engine','jade');
+
 
 var port = process.env.PORT || 8080; 		// set our port
 
@@ -41,6 +41,7 @@ var model = mongoose.model('loadbalancers',schema);
 var router = express.Router(); 				// get an instance of the express Router
 
 // middleware to use for all requests
+
 router.use(function(req, res, next) {
 	// do logging
 	console.log('Something is happening.');
@@ -50,6 +51,7 @@ router.use(function(req, res, next) {
 
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+
 router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
@@ -143,18 +145,6 @@ router.route("/LoadConfiguration").post(function(req,res){
             });
         }
     });
-    /*
-    toSave.save(function(err){
-    
-        if(err){
-            console.log("ERROR PUTTING");
-            res.send("ERROR");
-        }
-        else{
-            console.log("SUCCESS PUTTING.");
-            res.send("SUCCESS");
-        }
-    });*/
 }).delete(function(req,res){
     model.find({},function(err,servers){
         console.log(servers);
