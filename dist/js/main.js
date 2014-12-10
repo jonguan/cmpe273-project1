@@ -47,7 +47,7 @@ $(document).ready(function() {
         success: function(response) {
           console.log(response);
           var res = JSON.stringify(response, null, '\t');
-          $('#server-response').val(response);
+          $('#server-response').val(res);
         }
       });
       return false;
