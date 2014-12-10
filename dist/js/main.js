@@ -18,9 +18,12 @@ $(document).ready(function() {
 
   $('#post-button').on('click', function(e) {
     e.preventDefault();
+
+
     $.ajax({
       type: "POST",
-      url: $("#url").val(),
+      //url: $("#url").val(),
+      url: "http://localhost:8080/api/RouterSettings",
       data: $("#json-data").val(),
       contentType: 'application/json',
       datatype: 'text',
@@ -32,6 +35,26 @@ $(document).ready(function() {
     });
     return false;
   });
+
+
+  $('#latency-button').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        //url: $("#url").val(),
+        url: "http://localhost:8080/api/LatencySettings",
+        data: $("#latency-data").val(),
+        contentType: 'application/json',
+        datatype: 'text',
+        success: function(response) {
+          console.log(response);
+          //var res = JSON.stringify(response, null, '\t');
+          $('#server-response').val(response);
+        }
+      });
+      return false;
+    });
+
 
   $('#put-button').on('click', function(e) {
     e.preventDefault();

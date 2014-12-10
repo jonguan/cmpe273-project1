@@ -9,9 +9,9 @@
 <body>
   <nav class="navbar navbar-default" role="navigation">
     <div class="col-md-12 text-center">
-      <h2>Proxy Server</h2><hr/>
+      <h2>Simple Proxy Server</h2><hr/>
     </div>
-
+    <!--
     <div class="container">
       <div class="col-md-12 col-md-offset-1">
         <form class="form-horizontal" action="" method="" id="myForm1">
@@ -24,8 +24,10 @@
         </form>
       </div>
     </div>
+  -->
 
     <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
+       <!--
         <div class="panel panel-primary">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
@@ -40,16 +42,17 @@
            </div>
          </div>
     </div>
+  -->
 
     <div class="panel panel-primary">
         <div class="panel-heading" role="tab" id="headingTwo">
           <h4 class="panel-title">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              POST
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              Router Configuration
             </a>
           </h4>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
           <div class="panel-body">
             <div class="form-group">
               <label for="payload">Payload</label>
@@ -61,6 +64,27 @@
         </div>
     </div>
 
+    <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Latency 
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="payload">Payload</label>
+              <textarea id="latency-data" name="json-data" class="form-control" rows="3" placeholder="enter latency time"></textarea>
+            </div>
+            <button id="latency-button" type="submit" class="btn btn-success">Send</button>
+            <button type="reset" class="btn btn-danger">Clear</button>
+          </div>
+        </div>
+    </div>
+    </nav>
+<!--
     <div class="panel panel-primary">
       <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="panel-title">
@@ -97,7 +121,7 @@
     </div>
   </nav>
 
-
+-->
     <div class="container">
       <div class="row">
         <div class="col-md-12">
