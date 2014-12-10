@@ -4,6 +4,16 @@ html
   title Load Balancer API
  body
    block content
+    script(src='http://code.jquery.com/jquery-1.9.1.js')
+    script(type='text/javascript').
+     function onDelete() {
+      var vHostName = '#hostname';
+      var host = $('#host').val();
+      var port = $('#port').val();
+      $.ajax({url:'/api/LoadConfiguration?host='+host+'&port='+port,type:'DELETE'}).done(function() {
+       window.location.href = "/api/balancer";
+      })
+     }
     h1 Load Balancer Configuration API
     p Current Configuration
     table
@@ -18,11 +28,26 @@ html
          td= val.port
    br
    br
-   form(method='post',action='http://localhost:8080/api/LoadConfiguration',enctype='application/json')
-    label(for='host') Host:
-     input(type='text',name='host',id='host')
-    label(for='port') Port:
-     input(type='text',name='port',id='port')
+   tr
+    form(method='post',action='http://localhost:8080/api/LoadConfiguration',enctype='application/json')
+    td Host:
+    td
+     input(type='text',name='host')
+    td Port:
+    td
+     input(type='text',name='port')
+    td
      input(type='submit',name='submit',value='Configure')
+   br
+   br
+   tr(id='hostname')
+    td Host:
+    td
+     input(type='text',name='host',id='host')
+    td Port:
+    td
+     input(type='text',name='port',id='port')
+    td 
+     button(onClick=('onDelete()')) Delete
      p.
       Clicking on Configure updates the load balancer with new details. Make sure the server details is corect and the servers are UP.
