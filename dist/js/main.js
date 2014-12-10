@@ -18,8 +18,6 @@ $(document).ready(function() {
 
   $('#post-button').on('click', function(e) {
     e.preventDefault();
-
-
     $.ajax({
       type: "POST",
       //url: $("#url").val(),
@@ -48,7 +46,7 @@ $(document).ready(function() {
         datatype: 'text',
         success: function(response) {
           console.log(response);
-          //var res = JSON.stringify(response, null, '\t');
+          var res = JSON.stringify(response, null, '\t');
           $('#server-response').val(response);
         }
       });
