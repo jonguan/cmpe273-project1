@@ -125,9 +125,20 @@ $('#post-button-pt').on('click', function(e) {
     });
     return false;
   });
-/*
-$('#next-go-btn').click(function() {
-   window.location = "www.google.com";
-});
-*/
+
+$('#post-button-gz').on('click', function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: $("#url-gz").val(),
+      datatype: 'text',
+      success: function(response,status,xhr) {
+        console.log(response);
+        $('#server-response-gz').val( "\nResponse Headers:\n"+ xhr.getAllResponseHeaders()+"\nResponse Body:\n"+response);
+      }
+    });
+    return false;
+  });
+
+
 })
