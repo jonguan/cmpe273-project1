@@ -1,5 +1,5 @@
 //Load Balancer Server
-//author -- kiran
+//author -- Sneha 
 
 var http = require('http'),
     httpProxy = require('http-proxy');
