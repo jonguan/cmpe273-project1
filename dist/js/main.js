@@ -16,6 +16,16 @@ $(document).ready(function() {
     return false;
   });
 
+  $('#next-go-btn').on('click', function(e) {
+    if ($("#url").val() != '') {
+      window.location = $("#url").val();
+    }
+    return false;
+  });
+
+
+
+
   $('#post-button').on('click', function(e) {
     e.preventDefault();
     $.ajax({
@@ -87,4 +97,25 @@ $(document).ready(function() {
     return false;
   });
 
+
+$('#post-button-lb').on('click', function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: "http://127.0.0.1:8021/",
+      datatype: 'text',
+      success: function(response,status,xhr) {
+        console.log(response);
+        $('#server-response-lb').val(response + "\nResponse I.D. "+ xhr.getResponseHeader("X-HTTP-request-id"));
+      }
+    });
+    return false;
+  });
+
+
+/*
+$('#next-go-btn').click(function() {
+   window.location = "www.google.com";
+});
+*/
 })

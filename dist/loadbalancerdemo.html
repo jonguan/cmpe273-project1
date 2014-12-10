@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="col-md-12 text-center">
+      <h2>Simple Proxy Server</h2><hr/>
+    </div>
+
+    <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
+       
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              Load Balancer Demonstration
+            </a>
+          </h4>
+        </div>
+        <div class="panel panel-body"  aria-labelledby="headingTwo">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="post-button-lb" type="submit" class="btn btn-success col-md-offset-5">Send Request!</button>
+           
+        
+        </div>
+    </div>
+
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-danger">
+            <div class="panel-heading">Server Response:</div>
+            <div class="panel-body text-danger">
+              <textarea id="server-response-lb" class="form-control" rows="8" placeholder="server response"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+<script >
+$('.btn-danger').on('click', function(e) {
+    e.preventDefault();
+    $(this.parentElement).find('.form-control').val('');
+});
+</script>
+</body>
+</html>
