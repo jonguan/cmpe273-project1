@@ -13,19 +13,29 @@ var fse = require('fs-extra');
 var jf = require('jsonfile');
 var optionsFile = './options.json';
 var latencyFile = './latency.json';
+var datetime = new Date();
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.set('views',__dirname+'/Views');
+app.set('view engine','jade');
 
 var port = process.env.PORT || 8080; 		// set our port
 
-var mongoose   = require('mongoose');
-    mongoose.connect('localhost'); // connect to our database
-var Bear     = require('./app/models/bear');
-var SimpleProxyServer = require('./app/models/proxy');
 
+var mongoose   = require('mongoose');
+    mongoose.connect('ashik:ashik@ds047950.mongolab.com:47950/mymongodb',function (error) {
+    if (error) {
+        console.log(error);
+    }
+}); // connect to our database
+
+    //Define a schema for our db.
+var serverSchema = {host:String,port:String};
+var schema = new mongoose.Schema({LoadBalancers:[serverSchema]});
+var model = mongoose.model('loadbalancers',schema);
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router(); 				// get an instance of the express Router
@@ -38,54 +48,16 @@ router.use(function(req, res, next) {
 });
 
 
+
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
 
+
 // REST APIs for our server
 // =============================================================================
-router.route('/SimpleProxyServer')
-
-	// create a simple Proxy Server payload (accessed at POST http://localhost:8080/api/SimpleProxyServer)
-	.post(function(req, res) {
-		  
-		var simpleProxyServer = new SimpleProxyServer();  // create a new instance of the Simple Proxy Server
-		simpleProxyServer._id = 'ProxySettings';
-		simpleProxyServer.target = req.body.target;  // set the bears name (comes from the request)
-        simpleProxyServer.forward = req.body.forward ;
-		// save the SimpleProxyServer and check for errors
-		simpleProxyServer.save(function(err) {
-			if (err)
-				res.send(err);
-
-			res.json({ message: 'SimpleProxyServer settings created!' });
-		});
-		
-	})
-.put(function(req, res) {
-
-		// use our bear model to find the bear we want
-		SimpleProxyServer.findById('ProxySettings', function(err, simpleProxyServer) {
-
-			if (err)
-				res.send(err);
-
-			simpleProxyServer.target = req.body.target; 	// update the target
-			simpleProxyServer.forward = req.body.forward; 	// update the target
-
-			// save the bear
-			simpleProxyServer.save(function(err) {
-				if (err)
-					res.send(err);
-
-				res.json({ message: 'ProxySettings updated!' });
-			});
-
-		});
-	});
-
 
 	router.route('/RouterSettings')
 
@@ -124,7 +96,103 @@ router.route('/LatencySettings')
  res.json({ message: 'Latency Configurations Saved!' });
 	});
 
+router.route("/balancer").get(function(req,res){
+        var loadServers = "";
+        model.find({},function(err,servers){
+                console.log(servers);
+                loadServers     = servers[0].LoadBalancers;
+                res.render('BalancerIndex',{rows:loadServers});
+                res.end();
+        });
+});
 
+router.route("/LoadConfiguration").post(function(req,res){
+    model.find({},function(err,servers){
+        console.log(servers);
+        var loadServers = servers[0].LoadBalancers;
+        var serverId = servers[0]._id;
+        var exists = false;
+        for(var i=0;i<loadServers.length;i++){
+            if(loadServers[i].host == req.body.host && loadServers[i].port == req.body.port){
+                console.log(loadServers[i].host+" "+req.body.host+" "+loadServers[i].port+" "+req.body.port);
+                exists = true;
+            }
+        }
+        if(exists){
+            console.log("Server Already Exists!!!");
+            res.send("Server Already Exists");
+        }
+        else{
+            console.log("Server Not Found. Go Ahead And Add");
+            model.update({'_id':serverId},{$addToSet:{'LoadBalancers':{"host":req.body.host,"port":req.body.port}}},function(err,data){
+                if(err){
+                    res.status(400).send(err);
+                }
+                else{
+                    //lb.UpdateProxyTable();
+                    fs.writeFile('./dbConfig.txt','Configuration changed on '+datetime,function(err){
+                        if(err)throw err;
+                        console.log("Configuration changed.");                      
+                    });
+                    var loadServers = "";
+                    model.find({},function(err,servers){
+                        loadServers = servers[0].LoadBalancers;
+                        res.render('BalancerIndex',{rows:loadServers});
+                    });
+                }
+            });
+        }
+    });
+    /*
+    toSave.save(function(err){
+    
+        if(err){
+            console.log("ERROR PUTTING");
+            res.send("ERROR");
+        }
+        else{
+            console.log("SUCCESS PUTTING.");
+            res.send("SUCCESS");
+        }
+    });*/
+}).delete(function(req,res){
+    model.find({},function(err,servers){
+        console.log(servers);
+        var loadServers = servers[0].LoadBalancers;
+        var serverId = servers[0]._id;
+        var exists = false;
+        for(var i=0;i<loadServers.length;i++){
+            if(loadServers[i].host == req.query.host && loadServers[i].port == req.query.port){
+                console.log(loadServers[i].host+" "+req.query.host+" "+loadServers[i].port+" "+req.query.port);
+                exists = true;
+            }
+        }
+        if(exists){
+            console.log("Server Found. Removing The Server From Loadbalancer Array.");
+            model.update({'_id':serverId},{$pull:{'LoadBalancers':{"host":req.query.host,"port":req.query.port}}},function(err,data){
+                if(err){
+                    res.status(400).send(err);
+                }
+                else{
+                    //lb.UpdateProxyTable();
+                    fs.writeFile('./dbConfig.txt','Configuration changed on '+datetime,function(err){
+                        if(err)throw err;
+                        console.log("Configuration changed.");                      
+                    });
+                    var loadServers = "";
+                    model.find({},function(err,servers){
+                        loadServers = servers[0].LoadBalancers;
+                        res.render('BalancerIndex',{rows:loadServers});
+                    });
+                }
+            });
+        }
+        else{
+            res.status(400).send(err);
+        }   
+    });
+
+});
 
 
 // REGISTER OUR ROUTES -------------------------------
