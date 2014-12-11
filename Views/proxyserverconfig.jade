@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    link(href="/css/bootstrap.min.css", rel="stylesheet")
+  body
+    nav.navbar.navbar-default(role="navigation")
+      .col-md-12.text-center
+        h2 Simple Proxy Server
+        hr
+      #accordion.panel-group.col-md-12(role="tablist", aria-multiselectable="true")
+        .panel.panel-primary
+          #headingTwo.panel-heading(role="tab")
+            h4.panel-title
+              a(data-toggle="collapse", data-parent="#accordion", href="#collapseTwo", aria-expanded="true", aria-controls="collapseTwo")
+                | Router Configuration
+          #collapseTwo.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingTwo")
+            .panel-body
+              .form-group
+                label(for="payload") Payload
+                textarea#json-data.form-control(name="json-data", rows="3", placeholder="enter json data to be sent")
+              button#post-button.btn.btn-success(type="submit") Send
+              button.btn.btn-danger(type="reset") Clear
+        .panel.panel-primary
+          #headingTwo.panel-heading(role="tab")
+            h4.panel-title
+              a.collapsed(data-toggle="collapse", data-parent="#accordion", href="#collapseThree", aria-expanded="false", aria-controls="collapseThree")
+                | Latency
+          #collapseThree.panel-collapse.collapse(role="tabpanel", aria-labelledby="headingTwo")
+            .panel-body
+              .form-group
+                label(for="payload") Payload
+                textarea#latency-data.form-control(name="json-data", rows="3", placeholder="enter latency time")
+              button#latency-button.btn.btn-success(type="submit") Send
+              button.btn.btn-danger(type="reset") Clear
+    .container
+      .row
+        .col-md-12
+          .panel.panel-danger
+            .panel-heading JSON Response
+            .panel-body.text-danger
+              textarea#server-response.form-control(rows="8", placeholder="server response")
+    script(src="/js/jquery.js")
+    script(src="/js/bootstrap.js")
+    script(src="/js/main.js")
+    script.
+      $('.btn-danger').on('click', function(e) {
+      	e.preventDefault();
+      	$(this.parentElement).find('.form-control').val('');
+      });
+

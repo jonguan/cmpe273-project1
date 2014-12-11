@@ -14,6 +14,7 @@ var jf = require('jsonfile');
 var optionsFile = './options.json';
 var latencyFile = './latency.json';
 var datetime = new Date();
+var path = require('path');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,8 +22,10 @@ app.use(bodyParser.json());
 app.set('views',__dirname+'/Views');
 app.set('view engine','jade');
 
+app.use(express.static(path.join(__dirname,'dist')));
 
 var port = process.env.PORT || 8080; 		// set our port
+
 
 
 var mongoose   = require('mongoose');
@@ -41,7 +44,6 @@ var model = mongoose.model('loadbalancers',schema);
 var router = express.Router(); 				// get an instance of the express Router
 
 // middleware to use for all requests
-
 router.use(function(req, res, next) {
 	// do logging
 	console.log('Something is happening.');
@@ -51,11 +53,62 @@ router.use(function(req, res, next) {
 
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-
 router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });	
+        
+	res.render('index2');
+        console.log('rendering jade file');
+	//res.json({'hooray! welcome to our api!' });	
 });
 
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/proxyservernext', function(req, res) {
+
+        res.render('proxyservernext');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
+
+router.get('/proxyserverdemo', function(req, res) {
+
+        res.render('proxyserverdemo');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
+
+router.get('/proxyserverconfig', function(req, res) {
+
+        res.render('proxyserverconfig');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
+
+router.get('/loadbalancernext', function(req, res) {
+
+        res.render('loadbalancernext');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
+
+router.get('/loadbalancerdemo', function(req, res) {
+
+        res.render('loadbalancerdemo');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
+
+router.get('/processingtime_requestid', function(req, res) {
+
+        res.render('processingtime_requestid');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
+
+router.get('/gzip', function(req, res) {
+
+        res.render('gzip');
+        console.log('rendering jade file');
+        //res.json({'hooray! welcome to our api!' });
+});
 
 
 // REST APIs for our server
@@ -145,6 +198,18 @@ router.route("/LoadConfiguration").post(function(req,res){
             });
         }
     });
+    /*
+    toSave.save(function(err){
+    
+        if(err){
+            console.log("ERROR PUTTING");
+            res.send("ERROR");
+        }
+        else{
+            console.log("SUCCESS PUTTING.");
+            res.send("SUCCESS");
+        }
+    });*/
 }).delete(function(req,res){
     model.find({},function(err,servers){
         console.log(servers);
