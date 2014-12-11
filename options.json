@@ -6,7 +6,7 @@
   "bar.com": "http://www.bar.com",
   "tanishq.co.in": "tanishq.co.in",
   "http://stackoverflow.com": "http://stackoverflow.com",
-  "localhost:8080": "http://localhost:8080",
+  "http://54.149.154.58:8080": "http://54.149.154.58:8080",
   "localhost:8021": "http://localhost:8021",
   "code.jquery.com": "http://code.jquery.com"
 }
