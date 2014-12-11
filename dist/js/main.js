@@ -31,7 +31,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       //url: $("#url").val(),
-      url: "http://localhost:8080/api/RouterSettings",
+      url: "http://54.149.154.58:8080/api/RouterSettings",
       data: $("#json-data").val(),
       contentType: 'application/json',
       datatype: 'text',
@@ -50,7 +50,7 @@ $(document).ready(function() {
       $.ajax({
         type: "POST",
         //url: $("#url").val(),
-        url: "http://localhost:8080/api/LatencySettings",
+        url: "http://54.149.154.58:8080/api/LatencySettings",
         data: $("#latency-data").val(),
         contentType: 'application/json',
         datatype: 'text',
