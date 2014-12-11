@@ -47,3 +47,7 @@ In computer, go to Network Settings --> Proxy --> Set localhost:8000 as web prox
 Open index.html page in dist folder for the main page.
 
 It will navigate to the further pages.
+
+# Amazon instance
+http://54.149.154.58:8080/api/
+
