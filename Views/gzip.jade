@@ -26,4 +26,9 @@ html
             .panel-heading Server Response:
             .panel-body.text-danger
               textarea#server-response-gz.form-control(rows="8")
-
+    script(src="/js/jquery.js")
+    script(src="/js/bootstrap.js")
+    script.
+      $('#post-button-gz').on('click', function(e) {
+      	e.preventDefault();
+      	$.ajax({type: "GET",url: $("#url-gz").val(),datatype: 'text',success: function(response,status,xhr) {console.log(response);$('#server-response-gz').val( "\\nResponse Headers:\n"+ xhr.getAllResponseHeaders()+"\nResponse Body:\n"+response);}});return false;});
