@@ -51,3 +51,8 @@ It will navigate to the further pages.
 # Amazon instance
 http://54.149.154.58:8080/api/
 
+When running the code in chrome, install chrome-plugin Allow-Control-Allow-Origin: *
+
+Headers to accept are:
+
+http-processing-time, X-HTTP-request-id, x-http-processing-time, Content-Encoding
