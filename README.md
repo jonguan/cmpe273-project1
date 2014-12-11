@@ -42,21 +42,6 @@ Listens on Port 8000
 In computer, go to Network Settings --> Proxy --> Set localhost:8000 as web proxy
 
 
-
-# Old
-
-% node proxy.js <from> <to> <timeout-in-seconds>
-
-To forward from localhost:9001 => localhost:80
-
-$ node proxy.js 9001 80
-
-Or localhost:9001 => otherhost:80
-
-$ node proxy.js 9001 otherhost:80
-
-
-
 # UI
 
 Open index.html page in dist folder for the main page.
