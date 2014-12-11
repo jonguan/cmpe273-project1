@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    link(href="/css/bootstrap.min.css", rel="stylesheet")
+  body
+    .container
+      .jumbotron
+        h1.text-center Select an option:
+        p
+          a.btn.btn-success.btn-lg.col-md-offset-4(href="proxyserverconfig", target="_blank", role="button")
+            span.glyphicon.glyphicon-wrench(aria-hidden="true")
+            | Configuration
+          a.btn.btn-primary.btn-lg(href="proxyserverdemo", target="_blank", role="button")
+            span.glyphicon.glyphicon-play(aria-hidden="true")
+            | Demonstration

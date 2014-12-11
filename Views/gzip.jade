@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    link(href="/css/bootstrap.min.css", rel="stylesheet")
+  body
+    nav.navbar.navbar-default(role="navigation")
+      .col-md-12.text-center
+        h2 GZIP
+        hr
+      #accordion.panel-group.col-md-8.col-md-offset-2(role="tablist", aria-multiselectable="true")
+        .panel.panel-primary
+          #headingTwo.panel-heading.text-center(role="tab")
+            h4.panel-title
+              a(data-toggle="collapse", data-parent="#accordion", href="#collapseTwo", aria-expanded="true", aria-controls="collapseTwo")
+                | Enter URL
+          .panel.panel-body(aria-labelledby="headingTwo")
+            input#url-gz.form-control(type="text")
+            br
+            button#post-button-gz.btn.btn-success.col-md-offset-5(type="submit")
+              | gzip
+              span.glyphicon.glyphicon-road(aria-hidden="true")
+    .container
+      .row
+        .col-md-12
+          .panel.panel-danger
+            .panel-heading Server Response:
+            .panel-body.text-danger
+              textarea#server-response-gz.form-control(rows="8")
+
