@@ -39,7 +39,7 @@ Use routingTable.js as the proxy server via
 Listens on Port 8000
 
 
-In computer, go to Network Settings --> Proxy --> Set localhost:8000 as web proxy
+In computer, go to Network Settings --> Proxy --> Set 54.149.154.58:8000 as web proxy
 
 
 # UI
